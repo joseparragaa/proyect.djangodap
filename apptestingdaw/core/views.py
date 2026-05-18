@@ -1,70 +1,63 @@
 from django.shortcuts import render
 
-# 1. Definimos los datos base
+# 1. Definimos tus datos base actualizados
 MI_PERFIL = {
-    'mi_nombre': 'Zharick García',
-    'profesion': 'Futura Ingeniera de Software',
-    'email': 'zintriagi@gmail.com',
-    'github': 'https://github.com/ZharickGarcia2005',
-    'youtube': 'https://www.youtube.com/@zharickgarcia',
-    'instagram': 'https://www.instagram.com/zharick.garcia_/',
-    'tiktok': 'https://www.tiktok.com/@zharick_garcia_',
+    'mi_nombre': 'Jose Parraga',
+    'profesion': 'Estudiante de Ingeniería en Software',
+    'email': 'jparraga8288@utm.edu.ec',
+    'github': 'https://github.com/joseparragaa',
+    'youtube': 'https://www.youtube.com/@boahancock8613',
+    'instagram': 'https://www.instagram.com/a.scarinito/',
+    'tiktok': 'https://www.tiktok.com/@scarinitoo',
 }
+
 
 def portada(request):
     # Usamos ** para pasar el diccionario como variables independientes al HTML
     return render(request, 'core/index.html', MI_PERFIL)
 
+
 def about(request):
     context = {
-        **MI_PERFIL, # Esto "desempaqueta" nombre, email, etc.
+        **MI_PERFIL,  # Esto "desempaqueta" tu nombre, email, redes, etc.
         'biografia': (
-            'Nací en la ciudad de Manta el 2 de agosto de 2005. Mi camino académico inició en la '
-            'Unidad Educativa Leonid Aviat (2012-2015) y continuó en la Unidad Educativa Stella Maris, '
-            'donde completé mi formación secundaria en el año 2024.'
+            'Soy estudiante de Ingeniería en Software. Si deseas contactarme para proyectos, '
+            'dudas o simplemente hablar sobre programación, puedes encontrar mis datos a continuación.'
         ),
         'biografia_extra': (
-            'Actualmente, me encuentro enfocada en mi formación profesional como estudiante de '
-            'Ingeniería de Software en la Universidad Técnica de Manabí (UTM), cursando el quinto nivel. '
-            'Me apasiona el desarrollo backend con Python y Django.'
+            'Nací en la ciudad de Portoviejo el 7 de junio de 2005. Actualmente me encuentro '
+            'enfocado en mi desarrollo académico y profesional, adquiriendo habilidades en la '
+            'creación de soluciones tecnológicas y software de calidad.'
         ),
     }
     return render(request, 'core/about.html', context)
 
+
 def portfolio(request):
     proyectos = [
         {
-            'titulo': 'Sistema de Identificación y Localización Canina',
+            'titulo': 'Juego de Ajedrez',
             'descripcion': (
-                'Aplicación móvil para la gestión de identificación en veterinarias y '
-                'localización de perritos extraviados.'
+                'Desarrollo de un juego de ajedrez interactivo. Ideal para practicar '
+                'lógica, estrategias de juego y aplicar reglas del ajedrez tradicional.'
             ),
-            'url': '#',
-            'imagen': 'home-bg.jpg',
+            'url': '#',  # Aquí puedes colocar el enlace más tarde
+            'imagen': 'ajedrez.jpg',  # Recuerda tener esta imagen en tus archivos estáticos
         },
         {
-            'titulo': 'Museo Virtual Interactivo',
+            'titulo': 'Calculadora Web',
             'descripcion': (
-                'Proyecto colaborativo que permite explorar galerías y exposiciones '
-                'digitales de forma inmersiva desde el navegador.'
+                'Una aplicación de calculadora funcional para realizar operaciones matemáticas '
+                'básicas y avanzadas con una interfaz limpia y amigable.'
             ),
-            'url': '#',
-            'imagen': 'about-bg.jpg',
+            'url': '#',  # Aquí puedes colocar el enlace más tarde
+            'imagen': 'calculadora.jpg',  # Recuerda tener esta imagen en tus archivos estáticos
         },
     ]
+
+    # Combinamos tus datos de perfil con la lista de proyectos para el portafolio
     context = {
         **MI_PERFIL,
-        'proyectos': proyectos,
+        'proyectos': proyectos
     }
     return render(request, 'core/portfolio.html', context)
-
-def contact(request):
-    context = {
-        **MI_PERFIL,
-        'descripcion_contacto': (
-            'Como estudiante de quinto nivel en la UTM, estoy abierta a consultorías, '
-            'colaboraciones en proyectos de software y prácticas profesionales.'
-        ),
-        'telefono': '0985999728',
-        'honorarios': '50$/h',
-    }
