@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ mi_nombre }} - Acerca de{% endblock %}
+
+{% block cabecera %}
+<header class="masthead" style="background-image: url('{% static 'core/img/about-bg.jpg' %}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Acerca de</h1>
+          <span class="subheading">Biografía</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+      <img class="img-fluid avatar" src="{% static 'core/img/avatar.jpg' %}" alt="{{ mi_nombre }}">
+    </div>
+    <div class="col-lg-7 col-md-8">
+      <h2 class="section-heading">{{ mi_nombre }}</h2>
+      <p>{{ biografia }}</p>
+      {% if biografia_extra %}
+        <p>{{ biografia_extra }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<hr>
+{% endblock %}

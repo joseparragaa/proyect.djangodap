@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ mi_nombre }} - Portafolio{% endblock %}
+
+{% block cabecera %}
+<header class="masthead" style="background-image: url('{% static 'core/img/portfolio-bg.jpg' %}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Portafolio</h1>
+          <span class="subheading">Currículo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  {% for proyecto in proyectos %}
+  <div class="row project">
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+      {% if proyecto.imagen %}
+        <img class="img-fluid" src="{{ proyecto.imagen.url }}" alt="{{ proyecto.titulo }}">
+      {% else %}
+        <img class="img-fluid" src="{% static 'core/img/about-bg.jpg' %}" alt="{{ proyecto.titulo }}">
+      {% endif %}
+    </div>
+    <div class="col-lg-7 col-md-8">
+      <h2 class="section-heading title">{{ proyecto.titulo }}</h2>
+      <p>{{ proyecto.descripcion }}</p>
+      {% if proyecto.url %}
+        <p><a href="{{ proyecto.url }}" target="_blank">Más información</a></p>
+      {% endif %}
+    </div>
+  </div>
+  {% empty %}
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>No hay proyectos disponibles aún.</p>
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

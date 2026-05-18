@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ mi_nombre }} - Contacto{% endblock %}
+
+{% block cabecera %}
+<header class="masthead" style="background-image: url('{% static 'core/img/contact-bg.jpg' %}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Contacto</h1>
+          <span class="subheading">Asesoría</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <p>{{ descripcion_contacto }}</p>
+      <br>
+      {% if telefono %}
+        <p><b>Teléfono:</b> {{ telefono }}</p>
+      {% endif %}
+      {% if honorarios %}
+        <p><b>Honorarios:</b> {{ honorarios }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<hr>
+{% endblock %}
